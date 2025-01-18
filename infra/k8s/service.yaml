@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: loans-coll-fb0da38701484b54bab10ebdb3d87e81-srv
+spec:
+  selector:
+    app: loans-coll-fb0da38701484b54bab10ebdb3d87e81
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 7070
+  type: ClusterIP

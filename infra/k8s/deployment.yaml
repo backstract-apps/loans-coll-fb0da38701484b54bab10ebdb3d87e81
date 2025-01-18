@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: loans-coll-fb0da38701484b54bab10ebdb3d87e81-depl
+  labels:
+    app: loans-coll-fb0da38701484b54bab10ebdb3d87e81
+    release: prometheus  # Added label for PodMonitor discovery
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: loans-coll-fb0da38701484b54bab10ebdb3d87e81
+      release: prometheus  # Added label for PodMonitor discovery
+  template:
+    metadata:
+      labels:
+        app: loans-coll-fb0da38701484b54bab10ebdb3d87e81
+        release: prometheus  # Added label for PodMonitor discovery
+    spec:
+      containers:
+        - name: loans-coll-fb0da38701484b54bab10ebdb3d87e81
+          image: 216084506783.dkr.ecr.ap-south-1.amazonaws.com/backstract_apps:loans-coll-fb0da38701484b54bab10ebdb3d87e81
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 7070
+              name: http  # Optional for HTTP traffic
+            - containerPort: 7070 #same as the deployed code
+              name: metrics  # Added port for metrics scraping
